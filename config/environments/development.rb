@@ -27,5 +27,5 @@ Depot::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.action_controller.perform_caching = true
+  config.action_controller.perform_caching = false
 end
