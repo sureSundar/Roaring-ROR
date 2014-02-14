@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-
+skip_before_action :authorize, only: [:new, :create]
 include CurrentCart
 before_action :set_cart, only: [:new, :create]
 before_action :set_order, only: [:show, :edit, :update, :destroy]
@@ -37,7 +37,8 @@ before_action :set_order, only: [:show, :edit, :update, :destroy]
       if @order.save
 	 Cart.destroy(session[:cart_id])
 	 session[:cart_id] = nil
-	 format.html { redirect_to store_url, notice: 'Thank you for your order.' }
+	 OrderNotifier.received(@order).deliver
+	 format.html { redirect_to store_url, notice: I18n.t('.thanks') }
          format.json { render action: 'show', status: :created, location: @order }
       else
         format.html { render action: 'new' }
