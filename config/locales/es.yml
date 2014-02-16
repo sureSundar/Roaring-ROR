@@ -7,6 +7,9 @@ es:
   index:
    title_html: "Su Cat&aacute;logo de Roaring-ROR"
    add_html: "A&ntilde;adir al Carrito"  
+ products:
+  index:
+   title_html: "Listado de los productos"
  carts:
   cart:
    title: "Carrito de la Compra"

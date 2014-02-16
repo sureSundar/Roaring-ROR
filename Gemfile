@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+#source 'https://rubygems.org'
+source 'http://cachefly.mirrors.rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
@@ -44,3 +45,6 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'jquery-ui-rails'
+gem 'activemerchant', '~> 1.31'
+gem 'haml', '~> 4.0'
+gem 'kaminari', '~> 0.14'

@@ -13,6 +13,7 @@ resources :users
 
 
 scope '(:locale)' do
+	resources :products
 	resources :orders
 	resources :line_items
 	resources :carts

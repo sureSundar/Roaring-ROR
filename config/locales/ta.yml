@@ -1,0 +1,58 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+ta:
+ layouts:
+  application:
+   title: "Roaring-ROR-I18N நூல் அடுக்கம்"
+   home: "முகப்பு"
+ store:
+  index:
+   title_html: "உங்களுடைய Roaring-ROR பட்டியல்"
+   add_html: "கார்ட்டில் சேர்க்க"
+ products:
+  index:
+   title_html: "தயாரிப்புகள் பட்டியல்"
+ carts:
+  cart:
+   title: "உங்கள் கார்ட்"
+   empty: "எம்ப்டி கார்ட்"
+   checkout: "வாங்க"
+   number:
+ currency:
+  format:
+   unit: "ரூ"
+   precision: 2
+   separator: "."
+   delimiter: ","
+   format: "%u%n"
+ orders:
+  new:
+   legend: "தயவு செய்து உங்கள் விவரங்களை உள்ளிடவும்"
+  form:
+   name: "பெயர்"
+   address_html: "முகவரி"
+   email: "மின்னஞ்சல்"
+   pay_type: "செலுத்துங்கள்"
+   pay_prompt_html: "கட்டண முறை தேர்ந்தெடு"
+   submit: "ஆர்டர்"
+ thanks: "உங்கள ஆர்டர் பொருட்டு நன்றி"
+ 
