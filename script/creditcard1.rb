@@ -1,3 +1,7 @@
+require 'rubygems'
+require 'active_merchant'
+
+
 # Use the TrustCommerce test servers
 ActiveMerchant::Billing::Base.mode = :test
 
@@ -24,7 +28,7 @@ if credit_card.valid?
 
   if response.success?
     puts "Successfully charged $#{sprintf("%.2f", amount / 100)} to the credit card #{credit_card.display_number}"
-  else
+ else
     raise StandardError, response.message
   end
 end
