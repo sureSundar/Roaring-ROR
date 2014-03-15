@@ -10,8 +10,7 @@
 </head>
 
 <body class="<%= controller.controller_name %>">
-
-  <div id="banner">
+<div id="banner">
 <%= form_tag store_path, class: 'locale' do %>
 <%= select_tag 'set_locale',
 options_for_select(LANGUAGES, I18n.locale.to_s),
@@ -24,14 +23,66 @@ onchange: 'this.form.submit()' %>
   </div>
   <div id="columns">
     <div id="side">
+	<h2 id="cart_title"><%= t('.cart_title') %></h2>
 	<div id="cart">
-		<% if @cart %>
-			<%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+		<% if @cart %>		
+			<%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>			
 			<%= render @cart %>
 			<% end %>
 		<% end %>
 	</div>
-      <ul>
+	<h2 id="cart_title"><%= t('.wish_cart_title') %></h2>
+	<div id="wish_cart">
+		<% if @wish_cart %>		
+			<%= hidden_div_if(@wish_cart.line_items.empty?, id: 'wish_cart') do %>			
+				<%= render @wish_cart %>
+			<% end %>
+		<% end %>
+	</div>	
+	<h2 id="cart_title"><%= t('.soc_cart_title') %></h2>
+	<div id="soc_cart">
+		<% if @soc_cart %>		
+			<%= hidden_div_if(@soc_cart.line_items.empty?, id: 'soc_cart') do %>			
+				<%= render @soc_cart %>
+			<% end %>
+		<% end %>
+	</div>
+	<div class="fb-like" data-send="true" data-width="450" data-show-faces="true"></div>
+	<div id="cart_title">
+	  <% if current_fbuser %>
+		Signed in as <strong><%= current_fbuser.name %></strong>!
+		<%= link_to "Sign out", signout_path, id: "sign_out" %>
+	  <% else %>
+		<%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+	  <% end %>
+	</div>	
+	<div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : 1399321243667774,
+          status     : true,
+          xfbml      : true
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/all.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+	<h2 id="cart_title"><%= t('.web_cart_title') %></h2>
+	<div id="web_cart">
+		<% if @web_cart %>		
+			<%= hidden_div_if(@web_cart.line_items.empty?, id: 'web_cart') do %>			
+				<%= render @web_cart %>
+			<% end %>
+		<% end %>
+	</div>	
+	  <ul>
         <li><a href="/"> <%= t('.home') %></a> </li>
       </ul>
 <% if session[:user_id] %>

@@ -77,6 +77,8 @@ end
   #     # Directs /admin/products/* to Admin::ProductsController
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
-  #   end
-
+  #   end  
+  match 'auth/:provider/callback', to: 'sessions#fbcreate',via: [:get, :post]
+  match 'auth/failure', to: redirect('/'),via: [:get, :post]
+  match 'signout', to: 'sessions#fbdestroy', as: 'signout',via: [:get, :post]
 end

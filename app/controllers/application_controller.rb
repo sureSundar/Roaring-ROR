@@ -26,6 +26,12 @@ def set_i18n_locale_from_params
 		end
 	end
 end
+private
+
+def current_fbuser
+  @current_fbuser ||= FBUser.find(session[:fbuser_id]) if session[:fbuser_id]
+end
+helper_method :current_fbuser
 
 def default_url_options
 { locale: I18n.locale }

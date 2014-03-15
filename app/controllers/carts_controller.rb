@@ -1,6 +1,8 @@
 class CartsController < ApplicationController
   skip_before_action :authorize, only: [:create, :update, :destroy]
-  before_action :set_cart, only: [:show, :edit, :update, :destroy]
+  include CurrentCart
+  before_action :self_set_cart, only: [:show, :edit, :update,:destroy]
+  before_action :set_cart, only: [:destroy]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
 
   # GET /carts
@@ -27,7 +29,6 @@ class CartsController < ApplicationController
   # POST /carts.json
   def create
     @cart = Cart.new(cart_params)
-
     respond_to do |format|
       if @cart.save
         format.html { redirect_to @cart, notice: 'Cart was successfully created.' }
@@ -56,18 +57,48 @@ class CartsController < ApplicationController
   # DELETE /carts/1
   # DELETE /carts/1.json
   def destroy
-    @cart.destroy if @cart.id == session[:cart_id]
-    session[:cart_id] = nil
-    respond_to do |format|
-      format.html { redirect_to store_url}
-      format.json { head :no_content }
-    end
+	puts "going to destory"
+	puts @loc_cart.id
+	#@loc_cart = Cart.find(params[:id])
+	if @loc_cart.id == session[:cart_id]
+		@cart.destroy 
+		session[:cart_id] = nil
+		respond_to do |format|
+		  format.html { redirect_to store_url}
+		  format.json { head :no_content }
+		end	
+	end
+	if @loc_cart.id == session[:web_cart_id]
+		@web_cart.destroy 
+		session[:web_cart_id] = nil
+		respond_to do |format|
+		  format.html { redirect_to store_url}
+		  format.json { head :no_content }
+		end	
+		
+	end
+	if @loc_cart.id == session[:soc_cart_id]
+		@soc_cart.destroy 
+		session[:soc_cart_id] = nil
+		respond_to do |format|
+		  format.html { redirect_to store_url}
+		  format.json { head :no_content }
+		end	
+	end
+	if @loc_cart.id == session[:wish_cart_id]
+		@wish_cart.destroy 
+		session[:wish_cart_id] = nil
+		respond_to do |format|
+		  format.html { redirect_to store_url}
+		  format.json { head :no_content }
+		end	
+	end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_cart
-      @cart = Cart.find(params[:id])
+    def self_set_cart
+      @loc_cart = Cart.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

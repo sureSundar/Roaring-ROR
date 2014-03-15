@@ -17,4 +17,14 @@ skip_before_action :authorize
 	session[:user_id] = nil
 	redirect_to store_url, notice: "Logged out"
   end
+  def fbcreate
+    user = User.from_omniauth(env["omniauth.auth"])
+    session[:fbuser_id] = user.id
+    redirect_to root_url
+  end
+
+  def destroy
+    session[:fbuser_id] = nil
+    redirect_to root_url
+  end
 end

@@ -3,3 +3,18 @@ if ($('#cart tr').length == 1) { $('#cart').show('blind', 10000); }
 
 $('#cart').html("<%= escape_javascript render(@cart) %>");
 $('#current_item').css({'background-color':'#88ff88'}).animate({'background-color':'#114411'}, 2000);
+
+if ($('#wish_cart tr').length == 1) { $('#wish_cart').show('blind', 10000); }
+
+$('#wish_cart').html("<%= escape_javascript render(@wish_cart) %>");
+$('#current_item').css({'background-color':'#88ff88'}).animate({'background-color':'#114411'}, 2000);
+
+if ($('#web_cart tr').length == 1) { $('#web_cart').show('blind', 10000); }
+
+$('#web_cart').html("<%= escape_javascript render(@web_cart) %>");
+$('#current_item').css({'background-color':'#88ff88'}).animate({'background-color':'#114411'}, 2000);
+
+if ($('#soc_cart tr').length == 1) { $('#soc_cart').show('blind', 10000); }
+
+$('#soc_cart').html("<%= escape_javascript render(@soc_cart) %>");
+$('#current_item').css({'background-color':'#88ff88'}).animate({'background-color':'#114411'}, 2000);

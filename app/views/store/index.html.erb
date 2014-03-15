@@ -1,19 +1,77 @@
+<head>
+<style type="text/css">
+/* entire container, keeps perspective */
+.flip-container {
+	perspective: 1000;
+}
+	/* flip the pane when hovered */
+	.flip-container:hover .flipper, .flip-container.hover .flipper {
+		transform: rotateY(180deg);
+	}
+
+.flip-container, .front, .back {
+	width: 500px;
+	height: 50px;
+}
+
+/* flip speed goes here */
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+	position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	z-index: 2;
+}
+
+/* back, initially hidden pane */
+.back {
+	transform: rotateY(180deg);
+}
+</style>
+
+</head>
 <% if notice %>
 <p id="notice"><%= notice %></p>
 <% end %>
 <h1><%= t('.title_html') %></h1>
 <% cache ['store', Product.latest] do %>
 <% @products.each do |product| %>
-<% cache ['entry', product] do %>
 <div class="entry">
-<%= image_tag(product.image_url) %>
-<h3><%= product.title %></h3>
-<%= sanitize(product.description) %>
-<div class="price_line">
-<span class="price"><%= number_to_currency(product.price) %></span>
-<%= button_to t('.add_html'), line_items_path(product_id: product),remote: true %>
+<% cache ['entry', product] do %>					
+	<!-- div class="flip-container" ontouchstart="this.classList.toggle('hover');" -->
+			<div class="flipper">			
+					<div class="front">
+						<%= image_tag(product.image_url) %>
+						<h3><%= product.title %></h3>
+						<%= sanitize(product.description) %>
+						<div class="price_line">
+							<span class="price"><%= number_to_currency(product.price) %></span>							
+							<%= button_to t('.add_html'), line_items_path(product_id: product, cart_type: "ALL"),remote: true %>														
+							<%= button_to t('.add_web_html'), line_items_path(product_id: product, cart_type: "WEB"),remote: true %>														
+							<%= button_to t('.add_soc_html'), line_items_path(product_id: product, cart_type: "SOC"),remote: true %>														
+							<%= button_to t('.add_wish_html'), line_items_path(product_id: product, cart_type: "WISH"),remote: true %>														
+						</div>
+							
+					</div>
+					<!-- div class="back">
+						<h3><%= product.description %></h3>					
+					</div -->		
+			</div>			
+	<!-- /div -->	
 </div>
-</div>
-  <% end %>
+  <% end %>  
  <% end %>
 <% end %>

@@ -24,10 +24,17 @@ en:
   application:
    title: "Roaring-ROR-I18N Bookshelf"
    home: "Home"
+   cart_title: "Your Cart"
+   wish_cart_title: "Your Wish Cart"
+   soc_cart_title: "Your Social Cart"
+   web_cart_title: "Your Web Cart"
  store:
   index:
    title_html: "Your Roaring-ROR Catalog"
    add_html: "Add to Cart"
+   add_wish_html: "Add to Wish Cart"
+   add_web_html: "Add to Web Cart"
+   add_soc_html: "Add to Social Cart"
  products:
   index:
    title_html: "Listing Products"
