@@ -1,0 +1,10 @@
+<div id="soc_cart"><table><tbody><tr><td>2×</td>
+<td>SKIN CARE</td>
+<td class="item_price">$4.00</td>
+</tr>
+<tr class="total_line">
+<td colspan="2">Total</td>
+	 <td class="total_cell">$4.00</td>
+</tr>
+</tbody></table>
+</div>

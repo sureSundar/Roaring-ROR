@@ -31,10 +31,10 @@ en:
  store:
   index:
    title_html: "Your Roaring-ROR Catalog"
-   add_html: "Add to Cart"
-   add_wish_html: "Add to Wish Cart"
-   add_web_html: "Add to Web Cart"
-   add_soc_html: "Add to Social Cart"
+   add_html: "Cart"
+   add_wish_html: "Wish Cart"
+   add_web_html: "Web Cart"
+   add_soc_html: "Social Cart"
  products:
   index:
    title_html: "Listing Products"

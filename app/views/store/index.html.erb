@@ -55,16 +55,18 @@
 			<div class="flipper">			
 					<div class="front">
 						<%= image_tag(product.image_url) %>
-						<h3><%= product.title %></h3>
-						<%= sanitize(product.description) %>
 						<div class="price_line">
-							<span class="price"><%= number_to_currency(product.price) %></span>							
+							<h4> Add to: <h4>
 							<%= button_to t('.add_html'), line_items_path(product_id: product, cart_type: "ALL"),remote: true %>														
 							<%= button_to t('.add_web_html'), line_items_path(product_id: product, cart_type: "WEB"),remote: true %>														
 							<%= button_to t('.add_soc_html'), line_items_path(product_id: product, cart_type: "SOC"),remote: true %>														
 							<%= button_to t('.add_wish_html'), line_items_path(product_id: product, cart_type: "WISH"),remote: true %>														
 						</div>
-							
+						<h3><%= product.title %></h3>						
+						<div class="price_line">
+							<div><%= sanitize(product.description) %></div>
+							<span class="price"><%= number_to_currency(product.price) %></span>
+						</div>												
 					</div>
 					<!-- div class="back">
 						<h3><%= product.description %></h3>					

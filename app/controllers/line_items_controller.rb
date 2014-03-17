@@ -32,11 +32,11 @@ class LineItemsController < ApplicationController
 	puts "Cart Type is #{ct_type}"
 	if (ct_type.eql?("ALL"))
 		@line_item = @cart.add_product(product.id)
-		@line_item_wb = @web_cart.add_product(product.id)
-		@line_item_s = @soc_cart.add_product(product.id)
-		@line_item_w = @wish_cart.add_product(product.id)
+		#@line_item_wb = @web_cart.add_product(product.id)
+		#@line_item_s = @soc_cart.add_product(product.id)
+		#@line_item_w = @wish_cart.add_product(product.id)
 		respond_to do |format|
-		  if (@line_item.save && @line_item_wb.save && @line_item_s.save && @line_item_w.save)
+		  if (@line_item.save)
 			format.html { redirect_to store_url}
 			format.js {@current_item = @line_item }
 			format.json { render action: 'show', status: :created, location: @line_item }
@@ -52,7 +52,7 @@ class LineItemsController < ApplicationController
 		respond_to do |format|
 		  if (@line_item_wb.save)
 			format.html { redirect_to store_url}
-			format.js {@current_item = @line_item }
+			format.js {@current_item = @line_item_wb }
 			format.json { render action: 'show', status: :created, location: @line_item }
 		  else
 			format.html { render action: 'new' }
@@ -65,7 +65,7 @@ class LineItemsController < ApplicationController
 		respond_to do |format|
 		  if (@line_item_s.save)
 			format.html { redirect_to store_url}
-			format.js {@current_item = @line_item }
+			format.js {@current_item = @line_item_s }
 			format.json { render action: 'show', status: :created, location: @line_item }
 		  else
 			format.html { render action: 'new' }
@@ -78,7 +78,7 @@ class LineItemsController < ApplicationController
 		respond_to do |format|
 		  if (@line_item_w.save)
 			format.html { redirect_to store_url}
-			format.js {@current_item = @line_item }
+			format.js {@current_item = @line_item_w }
 			format.json { render action: 'show', status: :created, location: @line_item }
 		  else
 			format.html { render action: 'new' }

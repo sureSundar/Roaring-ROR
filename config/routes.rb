@@ -81,4 +81,5 @@ end
   match 'auth/:provider/callback', to: 'sessions#fbcreate',via: [:get, :post]
   match 'auth/failure', to: redirect('/'),via: [:get, :post]
   match 'signout', to: 'sessions#fbdestroy', as: 'signout',via: [:get, :post]
+  match 'cart/pub_soc_cart', to: 'carts#pub_social_cart', via: [:get, :post]
 end
