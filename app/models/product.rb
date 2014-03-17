@@ -30,7 +30,7 @@ class Product < ActiveRecord::Base
 	
 		#srch_var="CEREAL"
 		if (srch_var != nil)
-			Product.delete_all
+			#Product.delete_all
 			search_url="https://nielsen.api.tibco.com:443/Products/v1/?search=#{srch_var}&apikey=3688-de41c79d-35fd-4b04-8089-783ce52be3d5"
 			#prod_url="https://nielsen.api.tibco.com:443/Products/v1/?search=#{upc_var}&apikey=3688-de41c79d-35fd-4b04-8089-783ce52be3d5"
 			response = self.fetchURL(search_url)

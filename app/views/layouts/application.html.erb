@@ -41,10 +41,6 @@ onchange: 'this.form.submit()' %>
 			</div>	
 			<h2 id="cart_title"><%= t('.soc_cart_title') %></h2>
 			<div id="cart_title">
-				<script>
-				FB.Canvas.setAutoGrow(false);
-				FB.Canvas.setSize({ height: 200, width: '13em' });
-				</script>
 				<!-- fb:profile-pic uid="loggedinuser" size="square" facebook-logo="true"></fb:profile-pic -->
 				<fb:login-button autologoutlink="true" show-faces="yes"></fb:login-button>	
 				<!--fb:recommendations></fb:recommendations -->
@@ -63,7 +59,7 @@ onchange: 'this.form.submit()' %>
 			<script>
 			FB.init({
 				  appId      : 1399321243667774,
-				  cooki		 : true,
+				  cookie     : true,
 				  status     : true,
 				  xfbml      : true
 				});      

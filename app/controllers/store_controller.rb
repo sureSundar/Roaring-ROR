@@ -10,7 +10,11 @@ before_action :set_cart
 		redirect_to store_url(locale: params[:set_locale])
 	else
 		Product.save_data_from_api(params[:srch])
-		@products = Product.order(:title)
+		search_condition="%%"
+		if (params[:srch] != nil)
+			search_condition = "%" + params[:srch] + "%"
+		end
+		@products = Product.find(:all, :conditions => ['title LIKE ? OR description LIKE ?', search_condition, search_condition])
 	end
   end
   def stg_index
@@ -125,4 +129,5 @@ before_action :set_cart
 	json = JSON.parse(input)
 	return json	
   end
+
 end
