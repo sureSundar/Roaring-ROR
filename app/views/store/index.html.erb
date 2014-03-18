@@ -41,7 +41,47 @@
 	transform: rotateY(180deg);
 }
 </style>
-
+<script type="text/javascript" language="javascript">
+   //$(document).ready(function() {
+     // $("#driver").click(function(event){
+		//alert($('#stage').text().length + $('#stage').text().trim());
+	function show_char(upc)
+	{
+		if ((upc.trim().length > 0) && (upc.trim().length < 20))
+		{	  
+			  $.getJSON('https://nielsen.api.tibco.com/Products/v1/' + upc.trim() +'?apikey=3688-de41c79d-35fd-4b04-8089-783ce52be3d5', function(data) {
+					var items = [];
+					  $.each( data.Characteristics[0], function( key, val ) {
+						items.push( "<li id='" + key + "'>" + key + " : " + val + "</li>" );					
+					  });
+					$( "#stage_" + upc.trim()).html("");
+					$( "<ul/>", {
+						"class": "my-new-list",
+						html: items.join( "" )
+					  }).appendTo( "#stage_" + upc.trim());				  		   		
+					  $( "#stage_" + upc.trim()).show().fadeOut(90000);
+          });
+		}      
+    }
+	function show_health(upc)
+	{
+		if ((upc.trim().length > 0) && (upc.trim().length < 20))
+		{	  
+			  $.getJSON('https://nielsen.api.tibco.com/Products/v1/' + upc.trim() +'/health?apikey=3688-de41c79d-35fd-4b04-8089-783ce52be3d5', function(data) {
+					var items = [];
+					  $.each( data.Characteristics[0], function( key, val ) {
+						items.push( "<li id='" + key + "'>" + key + " : " + val + "</li>" );					
+					  });
+					$( "#health_" + upc.trim()).html("");  
+					$( "<ul/>", {
+						"class": "my-new-list",
+						html: items.join( "" )
+					  }).appendTo( "#health_" + upc.trim());
+					$( "#health_" + upc.trim()).show().fadeOut( 90000 );					  
+          });
+		}      
+    }
+   </script>
 </head>
 <% if notice %>
 <p id="notice"><%= notice %></p>
@@ -49,6 +89,7 @@
 <h1><%= t('.title_html') %></h1>
 <% cache ['store', Product.latest] do %>
 <% @products.each do |product| %>
+
 <div class="entry">
 <% cache ['entry', product] do %>					
 	<!-- div class="flip-container" ontouchstart="this.classList.toggle('hover');" -->
@@ -60,12 +101,14 @@
 							<%= button_to t('.add_html'), line_items_path(product_id: product, cart_type: "ALL"),remote: true %>														
 							<%= button_to t('.add_web_html'), line_items_path(product_id: product, cart_type: "WEB"),remote: true %>														
 							<%= button_to t('.add_soc_html'), line_items_path(product_id: product, cart_type: "SOC"),remote: true %>														
-							<%= button_to t('.add_wish_html'), line_items_path(product_id: product, cart_type: "WISH"),remote: true %>														
+							<%= button_to t('.add_wish_html'), line_items_path(product_id: product, cart_type: "WISH"),remote: true %>																					
+							<input type="button" id="driver" value="Spec" onclick="show_char('<%=product.upc%>')"/>
+							<input type="button" id="driver" value="Health" onclick="show_health('<%=product.upc%>')"/>
 						</div>
 						<h3><%= product.title %></h3>						
 						<div class="price_line">
 							<div><%= sanitize(product.description) %></div>
-							<span class="price"><%= number_to_currency(product.price) %></span>
+							<span class="price"><%= number_to_currency(product.price) %></span>							
 						</div>												
 					</div>
 					<!-- div class="back">
@@ -74,6 +117,13 @@
 			</div>			
 	<!-- /div -->	
 </div>
+<div class="price_line">
+	<div id="stage_<%= product.upc %>" style="background-color:blue;">							 
+	</div>
+	<div id="health_<%= product.upc %>" style="background-color:orange;">							 
+	</div>											   
+</div>
+
   <% end %>  
  <% end %>
 <% end %>
