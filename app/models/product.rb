@@ -5,7 +5,7 @@ class Product < ActiveRecord::Base
 
 	validates :title, :description, :image_url, presence: true
 	validates :price, numericality: {greater_than_or_equal_to: 0.01}
-	#validates :title, uniqueness: true
+	validates :upc, uniqueness: true
 	validates :image_url, allow_blank: true, format: {
 	with: %r{\.(gif|jpg|png)\Z}i,
 	message: 'must be a URL for GIF, JPG or PNG image.'
@@ -41,6 +41,7 @@ class Product < ActiveRecord::Base
 			  u.description = line['Description']
 			  u.price = line['Rank']
 			  u.image_url='rails.png'
+			  u.upc = line['UPC']
 			  # set name value however you want to do that
 			  u.save
 			  u
