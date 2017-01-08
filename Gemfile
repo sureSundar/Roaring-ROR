@@ -1,5 +1,5 @@
-#source 'https://rubygems.org'
-source 'http://cachefly.mirrors.rubygems.org'
+source 'https://rubygems.org'
+#source 'http://cachefly.mirrors.rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
